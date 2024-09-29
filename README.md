@@ -17,7 +17,7 @@ This project is the **Blog Service** component of the **Voters Voice Amendment (
 
 ## Technologies Used
 
-- **Spring Boot** 3.3.4 (Java 17)
+- **Spring Boot** 3.3.4 (Java 23)
     - **Spring Web**: For building RESTful APIs.
     - **Spring Data JPA**: For interacting with the PostgreSQL database.
     - **PostgreSQL**: As the relational database to store blog posts and comments.
@@ -28,7 +28,7 @@ This project is the **Blog Service** component of the **Voters Voice Amendment (
 
 Before running this project, ensure you have the following installed:
 
-- **Java 17 or higher**
+- **Java 23 or higher**
 - **Maven**
 - **PostgreSQL** (If running locally)
 
