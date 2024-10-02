@@ -46,6 +46,16 @@ public class Comment {
     public Comment() {
     }
 
+    public Comment(long id, Post post, String vvaUserId, String vvaUserName, String text, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.post = post;
+        this.vvaUserId = vvaUserId;
+        this.vvaUserName = vvaUserName;
+        this.text = text;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Comment(String vvaUserId, String vvaUserName, String text) {
         this.vvaUserId = vvaUserId;
         this.vvaUserName = vvaUserName;
