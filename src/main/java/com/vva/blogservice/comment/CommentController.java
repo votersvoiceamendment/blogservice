@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/v1/post/{postId}/comment")
+@RequestMapping(path="api/v1/posts/{postId}/comment")
 public class CommentController {
 
     private final CommentService commentService;
