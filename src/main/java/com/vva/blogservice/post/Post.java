@@ -47,6 +47,24 @@ public class Post {
     public Post() {
     }
 
+    public Post(
+            long id,
+            String vvaUserId,
+            String title,
+            String text,
+            boolean featured,
+            LocalDateTime createdAt,
+            LocalDateTime updatedAt
+    ) {
+        this.featured = featured;
+        this.text = text;
+        this.title = title;
+        this.vvaUserId = vvaUserId;
+        this.id = id;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Post(String vvaUserId, String title, String text, boolean featured) {
         this.vvaUserId = vvaUserId;
         this.title = title;
@@ -54,10 +72,10 @@ public class Post {
         this.featured = featured;
     }
 
-    public Post(String title, String text, String vvaUserId) {
+    public Post(String vvaUserId, String title, String text) {
+        this.vvaUserId = vvaUserId;
         this.title = title;
         this.text = text;
-        this.vvaUserId = vvaUserId;
     }
 
     // This makes the createdAt and updatedAt be the time when the row is made
