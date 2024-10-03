@@ -1,8 +1,5 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
-import com.vva.blogservice.posts.Post;
-import com.vva.blogservice.posts.PostRepository;
-import com.vva.blogservice.posts.PostService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;

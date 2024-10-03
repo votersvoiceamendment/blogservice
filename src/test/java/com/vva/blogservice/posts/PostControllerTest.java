@@ -1,10 +1,7 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vva.blogservice.posts.Post;
-import com.vva.blogservice.posts.PostController;
-import com.vva.blogservice.posts.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
