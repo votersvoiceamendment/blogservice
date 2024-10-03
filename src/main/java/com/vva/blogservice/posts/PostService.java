@@ -1,4 +1,4 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
 import com.vva.blogservice.utils.UpdateUtils;
 import jakarta.transaction.Transactional;
@@ -16,7 +16,7 @@ public class PostService {
     }
 
     public List<Post> getPosts() {
-       return this.postRepository.findAllPostsOrderByFeaturedAndId();
+        return this.postRepository.findAllPostsOrderByFeaturedAndId();
     }
 
     public Post getPost(Long id) {

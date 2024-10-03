@@ -1,5 +1,8 @@
 package com.vva.blogservice.post;
 
+import com.vva.blogservice.posts.Post;
+import com.vva.blogservice.posts.PostRepository;
+import com.vva.blogservice.posts.PostService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-
 
 public class PostServiceTest {
 

@@ -1,7 +1,7 @@
-package com.vva.blogservice.comment;
+package com.vva.blogservice.comments;
 
-import com.vva.blogservice.post.Post;
-import com.vva.blogservice.post.PostRepository;
+import com.vva.blogservice.posts.Post;
+import com.vva.blogservice.posts.PostRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

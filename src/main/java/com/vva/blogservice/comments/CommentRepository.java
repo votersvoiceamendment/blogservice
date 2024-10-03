@@ -1,4 +1,4 @@
-package com.vva.blogservice.comment;
+package com.vva.blogservice.comments;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

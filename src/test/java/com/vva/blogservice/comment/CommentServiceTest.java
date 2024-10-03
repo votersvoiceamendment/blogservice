@@ -1,7 +1,10 @@
 package com.vva.blogservice.comment;
 
-import com.vva.blogservice.post.Post;
-import com.vva.blogservice.post.PostRepository;
+import com.vva.blogservice.comments.Comment;
+import com.vva.blogservice.comments.CommentRepository;
+import com.vva.blogservice.comments.CommentService;
+import com.vva.blogservice.posts.Post;
+import com.vva.blogservice.posts.PostRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

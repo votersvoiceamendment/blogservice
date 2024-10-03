@@ -1,13 +1,17 @@
 package com.vva.blogservice.comment;
 
-import com.vva.blogservice.comment.Comment;
-import com.vva.blogservice.comment.CommentService;
+import com.vva.blogservice.comments.Comment;
+import com.vva.blogservice.comments.CommentController;
+import com.vva.blogservice.comments.CommentService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -16,35 +20,24 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest(CommentController.class)
 public class CommentControllerTest {
 
     private AutoCloseable closeable;
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private CommentService commentService;
-
-    @InjectMocks
-    private CommentController commentController;
-
-    @BeforeEach
-    void setUp() {
-        this.closeable = MockitoAnnotations.openMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(commentController).build();
-    }
-
-    @AfterEach
-    void tearDown() throws Exception {
-        // Close mocks to clean up the resources
-        closeable.close();
-    }
 
     // Test for getComments() endpoint
     @Test
@@ -70,15 +63,15 @@ public class CommentControllerTest {
     void canAddCommentToPost() throws Exception {
         // Arrange
         Long postId = 1L;
-        Comment newComment = new Comment("vva-user-id", "UserName", "New Comment");
+        Comment newComment = new Comment("aec1cc50-8b65-44e6-8ad8-9126e6916b07", "UserName", "New Comment");
 
         // Act & Assert
         mockMvc.perform(post("/api/v1/posts/{postId}/comment", postId)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"vvaUserId\":\"vva-user-id\", \"vvaUserName\":\"UserName\", \"text\":\"New Comment\"}"))
+                        .content("{\"vvaUserId\":\"aec1cc50-8b65-44e6-8ad8-9126e6916b07\", \"vvaUserName\":\"UserName\", \"text\":\"New Comment\"}"))
                 .andExpect(status().isOk());
 
-        verify(commentService).addComment(postId, newComment); // Verify service method was called
+        verify(commentService).addComment(eq(postId), refEq(newComment));
     }
 }
 

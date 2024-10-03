@@ -1,5 +1,6 @@
-package com.vva.blogservice.comment;
+package com.vva.blogservice.comments;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public void addComment(@PathVariable("postId") Long postId, @RequestBody Comment newComment) {
+    public void addComment(@PathVariable("postId") Long postId, @Valid @RequestBody Comment newComment) {
         this.commentService.addComment(postId, newComment);
     }
 }

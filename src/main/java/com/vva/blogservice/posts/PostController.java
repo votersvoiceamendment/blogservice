@@ -1,6 +1,7 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +32,12 @@ public class PostController {
     }
 
     @PostMapping
-    public void createNewPost(@RequestBody Post post) {
+    public void createNewPost(@Valid @RequestBody Post post) {
         this.postService.createNewPost(post);
     }
 
     @PutMapping(path = "{id}")
-    public void updatePost(@PathVariable("id") Long id, @RequestBody Post updatedPost) {
+    public void updatePost(@PathVariable("id") Long id, @Valid @RequestBody Post updatedPost) {
         this.postService.updatePost(id, updatedPost);
     }
 

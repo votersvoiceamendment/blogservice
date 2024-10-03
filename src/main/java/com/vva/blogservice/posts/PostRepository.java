@@ -1,4 +1,4 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

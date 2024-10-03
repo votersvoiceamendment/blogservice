@@ -1,8 +1,10 @@
-package com.vva.blogservice.comment;
+package com.vva.blogservice.comments;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vva.blogservice.post.Post;
+import com.vva.blogservice.posts.Post;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -27,13 +29,18 @@ public class Comment {
     @JsonIgnore
     private Post post;
 
-    // Prevents updates after the entity is created
+    @NotBlank(message = "vvaUserId for comment cannot be null or empty")
+    @Size(max = 36, min = 36, message = "vvaUserId for comment must be 36 characters")
     @Column(updatable = false)
     private String vvaUserId;
 
+    @NotBlank(message = "vvaUserName for comment cannot be null or empty")
+    @Size(max = 50, message = "vvaUserName for comment cannot be more than 50 characters")
     @Column(length = 500)
     private String vvaUserName;
 
+    @NotBlank(message = "Comment text cannot be null or empty")
+    @Size(max = 500, message = "Comment text cannot be more than 500 characters")
     @Column(length = 500)
     private String text;
 

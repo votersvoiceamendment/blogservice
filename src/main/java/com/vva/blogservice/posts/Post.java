@@ -1,7 +1,9 @@
-package com.vva.blogservice.post;
+package com.vva.blogservice.posts;
 
-import com.vva.blogservice.comment.Comment;
+import com.vva.blogservice.comments.Comment;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,17 +25,23 @@ public class Post {
     )
     private long id;
 
+    @NotBlank(message = "vvaUserId for post cannot be null or empty")
+    @Size(max = 36, min = 36, message = "vvaUserId for post must be 36 characters")
     @Column(updatable = false, nullable = false)
     private String vvaUserId;
 
+    @NotBlank(message = "Post title cannot be null or empty")
+    @Size(max = 500, message = "Post title cannot be more than 500 characters")
     @Column(length = 500, nullable = false)
     private String title;
 
+    @NotBlank(message = "Post text cannot be null or empty")
+    @Size(max = 20000, message = "Post text cannot be more than 20000 characters")
     @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
     @Column(columnDefinition = "boolean default false")
-    private boolean featured = false;  // Default value of 'false' in Java
+    private boolean featured = false;
 
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
