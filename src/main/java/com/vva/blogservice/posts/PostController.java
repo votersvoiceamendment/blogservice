@@ -63,7 +63,8 @@ public class PostController {
     @PutMapping(path = "{postId}")
     public void updatePost(@PathVariable("postId") Long postId, @Valid @RequestBody Post updatedPost) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = (String) authentication.getPrincipal();
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String userId = jwt.getSubject();
         updatedPost.setVvaUserId(userId);
         this.postService.updatePost(postId, updatedPost);
     }
