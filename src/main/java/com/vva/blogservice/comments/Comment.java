@@ -29,7 +29,9 @@ public class Comment {
     @JsonIgnore
     private Post post;
 
-    @NotBlank(message = "vvaUserId for comment cannot be null or empty")
+//    This is taken care of using PrePersist later
+//    This is because the vvaUserId is in the JWT
+//    @NotBlank(message = "vvaUserId for comment cannot be null or empty")
     @Size(max = 36, min = 36, message = "vvaUserId for comment must be 36 characters")
     @Column(updatable = false)
     private String vvaUserId;
@@ -79,6 +81,10 @@ public class Comment {
     // This makes the createdAt and updatedAt be the time when the row is made
     @PrePersist
     protected void onCreate() {
+        if (this.vvaUserId == null) {
+            // Ensure vvaUserId is set before persisting
+            throw new IllegalStateException("vvaUserId must be set before persisting");
+        }
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
@@ -120,6 +126,8 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
+    public void setVvaUserId(String vvaUserId) { this.vvaUserId = vvaUserId; }
 
     public void setVvaUserName(String vvaUserName) {
         this.vvaUserName = vvaUserName;
