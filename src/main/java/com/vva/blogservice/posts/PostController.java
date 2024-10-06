@@ -44,8 +44,8 @@ public class PostController {
         Jwt jwt = (Jwt) authentication.getPrincipal();
         String userId = jwt.getSubject();
         post.setVvaUserId(userId);
-/*
-         Extract roles from JWT for logging/debugging (optional)
+
+//         Extract roles from JWT for logging/debugging (optional)
         String roles = jwt.getClaimAsString("roles");
         System.out.println("Roles: " + roles);
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
@@ -55,21 +55,32 @@ public class PostController {
         System.out.println("JWT Claims: " + jwt.getClaims());  // To check all JWT claims
         System.out.println("Authorities: " + authorities);
         System.out.println(post);
-*/
+
         this.postService.createNewPost(post);
     }
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(path = "{postId}")
     public void updatePost(@PathVariable("postId") Long postId, @Valid @RequestBody Post updatedPost) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Jwt jwt = (Jwt) authentication.getPrincipal();
         String userId = jwt.getSubject();
         updatedPost.setVvaUserId(userId);
+
+//        String roles = jwt.getClaimAsString("roles");
+//        System.out.println("Roles: " + roles);
+//        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
+//        authorities.forEach(authority -> {
+//            System.out.println("Roasdasdfle: " + authority.getAuthority());
+//        });
+//        System.out.println("JWT Claims: " + jwt.getClaims());  // To check all JWT claims
+//        System.out.println("Authorities: " + authorities);
+//        System.out.println(updatedPost);
+
         this.postService.updatePost(postId, updatedPost);
     }
 
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping(path = "{postId}")
     public void deletePost(@PathVariable("postId") Long postId) {
         this.postService.deletePost(postId);
