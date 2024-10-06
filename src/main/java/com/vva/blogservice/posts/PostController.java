@@ -46,15 +46,15 @@ public class PostController {
         post.setVvaUserId(userId);
 
 //         Extract roles from JWT for logging/debugging (optional)
-        String roles = jwt.getClaimAsString("roles");
-        System.out.println("Roles: " + roles);
-        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
-        authorities.forEach(authority -> {
-            System.out.println("Roasdasdfle: " + authority.getAuthority());
-        });
-        System.out.println("JWT Claims: " + jwt.getClaims());  // To check all JWT claims
-        System.out.println("Authorities: " + authorities);
-        System.out.println(post);
+//        String roles = jwt.getClaimAsString("roles");
+//        System.out.println("Roles: " + roles);
+//        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
+//        authorities.forEach(authority -> {
+//            System.out.println("Roasdasdfle: " + authority.getAuthority());
+//        });
+//        System.out.println("JWT Claims: " + jwt.getClaims());  // To check all JWT claims
+//        System.out.println("Authorities: " + authorities);
+//        System.out.println(post);
 
         this.postService.createNewPost(post);
     }
