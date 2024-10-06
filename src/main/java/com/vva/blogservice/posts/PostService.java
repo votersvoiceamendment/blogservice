@@ -2,6 +2,7 @@ package com.vva.blogservice.posts;
 
 import com.vva.blogservice.utils.UpdateUtils;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class PostService {
         return this.postRepository.findAllPostIds();
     }
 
-    public void createNewPost(Post post) {
+    public void createNewPost(@Valid Post post) {
         this.postRepository.save(post);
     }
 
@@ -37,7 +38,7 @@ public class PostService {
     // @Transactional makes it so you can directly work
     // with the object to change things
     @Transactional
-    public void updatePost(Long id, Post updatedPost) {
+    public void updatePost(Long id, @Valid Post updatedPost) {
         Post post = this.postRepository.findById(id).orElseThrow(() -> {
             return new IllegalStateException("Post with the id "+id+" does not exist.");
         });
