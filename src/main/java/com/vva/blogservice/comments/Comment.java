@@ -33,7 +33,7 @@ public class Comment {
 //    This is because the vvaUserId is in the JWT
 //    @NotBlank(message = "vvaUserId for comment cannot be null or empty")
     @Size(max = 36, min = 36, message = "vvaUserId for comment must be 36 characters")
-    @Column(updatable = false)
+    @Column(length = 36, updatable = false)
     private String vvaUserId;
 
     @NotBlank(message = "vvaUserName for comment cannot be null or empty")
