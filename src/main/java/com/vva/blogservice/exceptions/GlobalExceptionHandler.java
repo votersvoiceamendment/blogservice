@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     // 400 but can't fit the class
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        String errorMessage = ex.getBindingResult().getAllErrors().getFirst().getDefaultMessage();
+        String errorMessage = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
