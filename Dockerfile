@@ -1,6 +1,4 @@
-# Use an official OpenJDK runtime as a parent image
-#FROM openjdk:17-jdk-alpine
-#Need because on your mac
+# Use Maven image with OpenJDK for building the application
 FROM maven:3.8.4-openjdk-17 AS build
 
 # Set the working directory inside the container
@@ -14,6 +12,15 @@ RUN mvn dependency:resolve
 COPY . .
 RUN mvn clean package -DskipTests
 
+# Use a lightweight OpenJDK image for running the application
+FROM openjdk:17-jdk-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the built jar file from the build stage
+COPY --from=build /app/target/blogservice-0.0.1-SNAPSHOT.jar /app/blogservice.jar
+
 # Expose the port that the service will run on
 EXPOSE 8080
 
@@ -25,4 +32,4 @@ ENV AUTH_SECRET=${AUTH_SECRET}
 ENV ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
 
 # Run the Spring Boot application
-CMD ["java", "-jar", "target/blogservice-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/blogservice.jar"]
